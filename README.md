@@ -24,3 +24,6 @@ Features to be added
 * A rich color display in the console printing on what is happening like what table is being queried, number of rows and columns
 * Using dbplyr to figure out to show/print the query in SQL 
 * Include workflowR automatically to make a rich project
+
+
+inspiration: <p><a href="https://resources.rstudio.com/rstudio-conf-2020/flatironkitchen-how-we-overhauled-a-frankensteinian-sql-workflow-with-the-tidyverse-nathaniel-phillips?wvideo=7mp0kqqdte"><img src="https://embedwistia-a.akamaihd.net/deliveries/11d7a43ff9a4bcaa41f76c93736f718d.jpg?image_play_button_size=2x&amp;image_crop_resized=960x540&amp;image_play_button=1&amp;image_play_button_color=4287c7e0" width="400" height="225" style="width: 400px; height: 225px;"></a></p><p><a href="https://resources.rstudio.com/rstudio-conf-2020/flatironkitchen-how-we-overhauled-a-frankensteinian-sql-workflow-with-the-tidyverse-nathaniel-phillips?wvideo=7mp0kqqdte">FlatironKitchen: How we overhauled a Frankensteinian SQL workflow with the tidyverse - Nathaniel Phillips</a></p>
