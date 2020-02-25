@@ -6,7 +6,9 @@ Suppose you have a hypothetical company with customers from different regions. Y
 
 This kind of workflow can be vastly improved using piping in R and database instead of having each individual analyst write disparate SQL queries. 
 This package solves exactly the similar kind of problems in *internal data tooling* of the companies. FasteneR uses **fastener-functions** like above to build the workflow.
-**fastener-functions** are the custom functions that have predefined usage.We know exactly what they fit into(our database and tables) and what they hold(our reporting workflow).
+<br>
+**fastener-functions** are the custom functions that have predefined usage.We know exactly what they fit into(our database and tables) and what they hold(our reporting workflow).<br>
+
 Internal Data Tooling:
 Different department are well aware of the table names in the databases. The function names right now assumes such. But these functions can be made general which might affect the readability of the code for common workflow. `dbplyr` already does this.
 
