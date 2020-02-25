@@ -20,7 +20,14 @@ Below, the code is querying from database , applying filters and calculating met
 project_sales_us<- fastener("../sales.db","sales_from_us")
 project_sales_us %>%
             fr_get_customer_from("US") %>%
-            fr_get_transaction(1) %>% fr_end_project()
+            fr_get_transaction(1) %>%
+            fr_calc_metric_recency() %>%
+            fr_calc_metric_frequency() %>%
+            fr_calc_metric_monetary() %>%
+            fr_generate_cluster()%>%
+            fr_plot() %>%
+            fr_generate_pdf_report() %>%
+            fr_end_project()
 ```
 **At any moment in piping , one can use `project_sales_us$data` to get the dataframe nice and formatted, ready to use ggplot2 and rmarkdown for report. All the goodies in Rstudio**
 
