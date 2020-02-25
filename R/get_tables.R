@@ -87,7 +87,9 @@ fr_get_transaction<- function(.data,date){
 #' @export
 #'
 fr_get_resulting_dataframe<-function(.data){
+  print("DISCONNECTING from database")
   dbDisconnect(.data$conn)
+  print("Returning the resulting dataframe")
   return (.data$data)
 }
 fr_calc_recency<-function(.data,date){
