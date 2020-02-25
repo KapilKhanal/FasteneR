@@ -20,7 +20,7 @@ fastener<- function(db_name = db_name,project_name = project_name){
 print(green((paste(glue::glue("=========================PROJECT {project_name}=======================")))))
   conn <- DBI::dbConnect(RSQLite::SQLite(), db_name)
   green(cat(paste0("connecting to database:",blue(db_name),"\n \n")))
-  print(cat(green("Tables in the database \n")))
+  cat(green("Tables in the database \n"))
   print(DBI::dbListTables(conn))
   print(green("================================================"))
   return (structure(list(data = data,project = project_name,conn = conn,
