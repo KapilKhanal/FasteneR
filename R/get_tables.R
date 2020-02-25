@@ -33,7 +33,7 @@ print(green((paste(glue::glue("=========================PROJECT {project_name}==
 #'
 #' @param str location"
 #' @import dplyr
-#' @import dbplyr
+#' @import crayon
 #' @return A vector contain all valid tokens in the original input string
 #' @export
 #'
@@ -50,7 +50,7 @@ fr_get_customer_from<-function(.data,location){
 #'
 #' @param str location"
 #' @return A vector contain all valid tokens in the original input string
-#' @import dplyr
+#' @import crayon
 #' @import dbplyr
 #' @export
 #'
@@ -78,7 +78,12 @@ fr_get_transaction<- function(.data,date){
 
   return(.data)
 }
-
+#' A Function to disconnect to connection to database and returns resulting dataframe
+#'
+#' @param str date"
+#' @import DBI
+#' @import dplyr
+#' @return resulting dataframe
 #'@export
 fr_get_resulting_dataframe<-function(.data){
   dbDisconnect(.data$conn)
