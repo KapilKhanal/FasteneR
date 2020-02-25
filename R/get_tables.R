@@ -103,6 +103,7 @@ fr_add_column<-function(.data){
 #' @export
 fr_end_project<-function(.data){
   print(glue::glue("wrapped {.data$project}: returning the end dataframe"))
+  dbDisconnect(.data$conn)
   return (.data$data)
 }
 
