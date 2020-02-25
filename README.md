@@ -17,4 +17,10 @@ project_sales_us %>%
             fr_get_customer_from("US") %>%
             fr_get_transaction(1) %>% fr_end_project()
 ```
-**At any moment in piping , one can use project_sales_us$data to get the dataframe nice and formatted, ready to use ggplot2 and rmarkdown for report. All the goodies in Rstudio**
+**At any moment in piping , one can use `project_sales_us$data` to get the dataframe nice and formatted, ready to use ggplot2 and rmarkdown for report. All the goodies in Rstudio**
+
+Features to be added
+* A logging mechanism of what fasteneR functions were used to make the project object
+* A rich color display in the console printing on what is happening like what table is being queried, number of rows and columns
+* Using dbplyr to figure out to show/print the query in SQL 
+* Include workflowR automatically to make a rich project
