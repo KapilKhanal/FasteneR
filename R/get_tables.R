@@ -78,8 +78,9 @@ fr_get_transaction<- function(.data,date){
 
   return(.data)
 }
+
 #'@export
-fr_get_resulting_dataframe(.data){
+fr_get_resulting_dataframe<-function(.data){
   dbDisconnect(.data$conn)
   return (.data$data)
 }
@@ -100,7 +101,7 @@ fr_calc_clusters<-function(.data){
 fr_add_column<-function(.data){
 
 }
-#' @export
+#'@export
 fr_end_project<-function(.data){
   print(glue::glue("wrapped {.data$project}: returning the end dataframe"))
   dbDisconnect(.data$conn)
