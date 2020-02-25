@@ -1,11 +1,16 @@
 Package: FasteneR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: provides functions to query database and generate reports
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Kapil Khanal
+Maintainer: Kapil Khanal <kkhanal16@winona.edu>
+Description: This package is an internal package for a hypothetical small business 
+            that sells fasteners only across a small town.
+License: MIT License
 Encoding: UTF-8
 LazyData: true
+Imports:
+    dplyr,
+    RSQLite,
+    dbplyr
+RoxygenNote: 6.1.1

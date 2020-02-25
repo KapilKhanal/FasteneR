@@ -93,6 +93,9 @@ fr_calc_clusters<-function(.data){
 
 }
 
+fr_add_column<-function(.data){
+
+}
 fr_end_project<-function(.data){
   print("wrapped project: returning the end dataframe")
   return (.data$data)
