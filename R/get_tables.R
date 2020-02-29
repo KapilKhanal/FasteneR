@@ -23,12 +23,22 @@ print(green((paste(glue::glue("=========================PROJECT {project_name}==
   cat(green("Tables in the database \n"))
   print(DBI::dbListTables(conn))
   print(green("================================================"))
-  return (structure(list(data = data,project = project_name,conn = conn,
+  return (structure(list(data = tibble(),project = project_name,conn = conn,
                          db_name = db_name,events = list("process_started")), class = "fastener"))
 
   }
+fr_get_column_info<-function(.data,table_name){
+  table <- tbl(.data$conn, table_name)
+  table %>% glimpse()
+  invisible(.data)
+}
 
-
+print.fastener<-function(obj){
+  glue::glue("-------------------------------------{obj$project} REPORT-------------------------")
+  paste0("number of rows: ",nrow(obj$data))
+  dplyr::glimpse(obj$data)
+  summary(obj$data)
+}
 #' A Function to clean a single input string by removing punctuation and numbers and tokenizing it.
 #'
 #' @param str location"
@@ -70,9 +80,11 @@ fr_get_product<-function(.data,description){
 #' @return fastener object
 #' @export
 #'
-fr_get_transaction<- function(.data,date){
+fr_get_transaction_after<- function(.data,date){
+  date = as.Date(date)
+  print(class(date))
   transaction<-tbl(.data$conn,"transactions")
-  transaction<-transaction %>% filter(Date>=date)
+  transaction<-transaction %>% filter(Date>date)
   transaction<-collect(transaction)
   .data$data<- .data$data %>% dplyr::inner_join(transaction)
 
@@ -92,14 +104,24 @@ fr_get_resulting_dataframe<-function(.data){
   print("Returning the resulting dataframe")
   return (.data$data)
 }
-fr_calc_recency<-function(.data,date){
-
+fr_calc_recency<-function(.data,from_date = from_date){
+  df_RFM <- .data$data %>%
+    group_by(CustomerID) %>%
+    summarise(recency=as.numeric(as.Date(from_date)-max(Date)))
+  .data$data = df_RFM
+  return(.data)
 }
 fr_calc_frequency<-function(.data){
-
+df_freq<-.data$data %>%
+  group_by(CustomerID) %>%
+  summarise(
+  frequency=n_distinct(InvoiceNo))
 }
 fr_calc_monetary<-function(.data){
-
+  df_freq<-.data$data %>%
+    group_by(CustomerID) %>%
+    summarise(
+  monetary= sum(total_dolar)/n_distinct(InvoiceNo))
 }
 
 fr_calc_clusters<-function(.data){
