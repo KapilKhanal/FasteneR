@@ -16,7 +16,7 @@ This package solves exactly the similar kind of problems in *internal data tooli
 Internal Data Tooling:
 Different department are well aware of the table names in the databases. The function names right now assumes such. But these functions can be made general which might affect the readability of the code for common workflow. `dbplyr` already does this.
 
-The same workflow can give you reports and plots along with database queries. Since, its an R-script, whole bunch of goodies that come with R/Rstudio is now available including automation of common reports , composing different R-scripts for projects that span across the department.
+The same workflow can give you reports and plots along with database queries. Since, its an R-script, whole bunch of goodies that come with R/Rstudio is now available including automation of common reports , composing different R-scripts for projects that span across the department.This workflow Increase the frequency of analysis and reportings.It encourages analysis.
 
 Below, the code is querying from database , applying filters and calculating metrics. 
 
