@@ -7,9 +7,9 @@ Suppose you have a hypothetical company with customers from different regions. Y
 ## Why have internal package? 
 The package will be developed for four main components:<br>
 (i) data pipeline API optimized for the company<br>
-(ii)Branded visualization themes, scales, and geoms for ggplot2<br>
-(iii)R Markdown templates for different types of reports,<br>
-(iv) Vignettes and documentation for all queries<br>
+(ii)Company brand visualization themes for ggplot2<br>
+(iii)R Markdown templates for different types of reports for each department,<br>
+(iv) Vignettes and documentation for all SQL queries and one centralized repo of queries<br>
 (v)Custom functions to optimize different parts of our workflow.<br>
 
 
