@@ -4,6 +4,14 @@ Suppose you have a hypothetical company with customers from different regions. Y
 
 ```get_data >>(__and__then) add_purchase >> calc_interest >> calc_recency >> plot >>report``` 
 
+## Data tooling 
+The package will be developed for four main components:
+(i) data pipeline API optimized for the company
+(ii)Branded visualization themes, scales, and geoms for ggplot2
+(iii)R Markdown templates for different types of reports,
+(iv) Vignettes and documentation for all queries
+(v)Custom functions to optimize different parts of our workflow.
+
 
 **What is Buffet style data workflow?**
 > Buffet style workflow usually save a lot on analyst's time because it’s much easier to continually document r functions of the same table and database than to let each analyst write their own sql queries and arrange different tables.This is automating the repetitive data workflow. Data changes but code remains centralized and well managed and documented by few maintainer.<br>
