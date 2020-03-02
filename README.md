@@ -2,8 +2,11 @@
 
 Suppose you have a hypothetical company with customers from different regions. You have in-house data uses that usually follow a buffet style data pulling from the database and calculations we need. 
 
-```get_data >> add_purchase >> calc_interest >> calc_recency >> plot >>report``` 
+```get_data >>(__and__then) add_purchase >> calc_interest >> calc_recency >> plot >>report``` 
 
+
+**What is Buffet style data workflow?**
+> Buffet style workflow usually save a lot on analyst's time because it’s much easier to continually document r functions of the same table and database than to let each analyst write their own sql queries and arrange different tables.This is automating the repetitive data workflow. Data changes but code remains centralized and well managed and documented by few maintainer.<br>
 This kind of workflow can be vastly improved using piping in R and database instead of having each individual analyst write disparate SQL queries. 
 This package solves exactly the similar kind of problems in *internal data tooling* of the companies. FasteneR uses **fastener-functions** like above to build the workflow.
 <br>
@@ -13,7 +16,7 @@ This package solves exactly the similar kind of problems in *internal data tooli
 Internal Data Tooling:
 Different department are well aware of the table names in the databases. The function names right now assumes such. But these functions can be made general which might affect the readability of the code for common workflow. `dbplyr` already does this.
 
-The same workflow can give you reports and plots along with database queries. Since, its an R-script, whole bunch of goodies that come with R/Rstudio is now available including automation of common reports , composing different R-scripts for projects that span across the department.
+The same workflow can give you reports and plots along with database queries. Since, its an R-script, whole bunch of goodies that come with R/Rstudio is now available including automation of common reports , composing different R-scripts for projects that span across the department.This workflow Increase the frequency of analysis and reportings.It encourages analysis.
 
 Below, the code is querying from database , applying filters and calculating metrics. 
 
