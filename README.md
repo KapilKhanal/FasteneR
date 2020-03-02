@@ -4,13 +4,13 @@ Suppose you have a hypothetical company with customers from different regions. Y
 
 ```get_data >>(__and__then) add_purchase >> calc_interest >> calc_recency >> plot >>report``` 
 
-## Data tooling 
-The package will be developed for four main components:
-(i) data pipeline API optimized for the company
-(ii)Branded visualization themes, scales, and geoms for ggplot2
-(iii)R Markdown templates for different types of reports,
-(iv) Vignettes and documentation for all queries
-(v)Custom functions to optimize different parts of our workflow.
+## Why have internal package? 
+The package will be developed for four main components:<br>
+(i) data pipeline API optimized for the company<br>
+(ii)Branded visualization themes, scales, and geoms for ggplot2<br>
+(iii)R Markdown templates for different types of reports,<br>
+(iv) Vignettes and documentation for all queries<br>
+(v)Custom functions to optimize different parts of our workflow.<br>
 
 
 **What is Buffet style data workflow?**
