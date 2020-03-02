@@ -2,8 +2,11 @@
 
 Suppose you have a hypothetical company with customers from different regions. You have in-house data uses that usually follow a buffet style data pulling from the database and calculations we need. 
 
-```get_data >> add_purchase >> calc_interest >> calc_recency >> plot >>report``` 
+```get_data >>(__and__then) add_purchase >> calc_interest >> calc_recency >> plot >>report``` 
 
+
+**What is Buffet style data workflow?**
+> Buffet style workflow usually save a lot on analyst's time because it’s much easier to continually document r functions of the same table and database than to let each analyst write their own sql queries and arrange different tables.This is automating the repetitive data workflow. Data changes but code remains centralized and well managed and documented by few maintainer.<br>
 This kind of workflow can be vastly improved using piping in R and database instead of having each individual analyst write disparate SQL queries. 
 This package solves exactly the similar kind of problems in *internal data tooling* of the companies. FasteneR uses **fastener-functions** like above to build the workflow.
 <br>
