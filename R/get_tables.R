@@ -24,7 +24,8 @@ print(green((paste(glue::glue("=========================PROJECT {project_name}==
   print(DBI::dbListTables(conn))
   print(green("================================================"))
   return (structure(list(data = tibble(),project = project_name,conn = conn,
-                         db_name = db_name,events = list("process_started")), class = "fastener"))
+                         db_name = db_name,events = list("process_started"),
+                         query = NULL), class = "fastener"))
 
   }
 fr_get_column_info<-function(.data,table_name){
@@ -49,10 +50,10 @@ print.fastener<-function(obj){
 #'
 fr_get_customer_from<-function(.data,location){
   customer_table <- tbl(.data$conn, "customers")
-  result<-customer_table %>% filter(Country == location)
-  .data$data <- collect(result)
+  .data$data<-customer_table %>% filter(Country == location)
+  glimpse(.data$data)
   .data$events["customers_retrieved"] <- TRUE
-  return (.data)
+  invisible(.data)
 
 }
 
@@ -64,12 +65,21 @@ fr_get_customer_from<-function(.data,location){
 #' @import dbplyr
 #' @export
 #'
-fr_get_product<-function(.data,description){
+fr_add_product<-function(.data,description){
   items_table<-tbl(.data$conn,'items')
   items_table<- items_table %>% filter(Items==description)
-  result<-.data$data %>% dplyr::inner_join(collect(items_table))
-  .data$data <- collect(result)
-  return(.data)
+  .data$data<-items_table %>% dplyr::left_join(.data$data)
+  invisible(.data)
+}
+fr_get_product<-function(.data,description){
+  items_table<-tbl(.data$conn,'items')
+  .data$data<- items_table %>% filter(Items==description)
+
+  invisible(.data)
+}
+
+fr_build_query<-function(query){
+  new_query<-query
 }
 
 #' A Function to clean a single input string by removing punctuation and numbers and tokenizing it.
@@ -81,14 +91,12 @@ fr_get_product<-function(.data,description){
 #' @export
 #'
 fr_get_transaction_after<- function(.data,date){
-  date = as.Date(date)
-  print(class(date))
-  transaction<-tbl(.data$conn,"transactions")
-  transaction<-transaction %>% filter(Date>date)
-  transaction<-collect(transaction)
-  .data$data<- .data$data %>% dplyr::inner_join(transaction)
+  #date = as.Date(lubridate::ymd(date))
+  transaction<-tbl(.data$conn,"transactions") %>% filter(Date>date)
+  glimpse(collect(transaction))
+  .data$data<- .data$data %>% dplyr::left_join(transaction)
 
-  return(.data)
+  invisible(.data)
 }
 #' A Function to disconnect to connection to database and returns resulting dataframe
 #'
@@ -97,40 +105,48 @@ fr_get_transaction_after<- function(.data,date){
 #' @import dplyr
 #' @return resulting dataframe
 #' @export
-#'
+
 fr_get_resulting_dataframe<-function(.data){
   print("DISCONNECTING from database")
-  dbDisconnect(.data$conn)
   print("Returning the resulting dataframe")
-  return (.data$data)
+  return (collect(.data$data))
 }
-fr_calc_recency<-function(.data,from_date = from_date){
+#' @export
+fr_calc_metric_recency<-function(.data,from_date){
+  glimpse(.data$data)
   df_RFM <- .data$data %>%
     group_by(CustomerID) %>%
-    summarise(recency=as.numeric(as.Date(from_date)-max(Date)))
-  .data$data = df_RFM
-  return(.data)
+    summarise(recency=(as.Date(from_date))-max((as.Date(Date))))
+  .data$data = .data$data %>% left_join(df_RFM)
+  invisible(.data)
 }
-fr_calc_frequency<-function(.data){
-df_freq<-.data$data %>%
+
+#' @export
+fr_calc_metric_frequency<-function(.data){
+freq<-.data$data %>%
   group_by(CustomerID) %>%
   summarise(
   frequency=n_distinct(InvoiceNo))
+.data$data<- .data$data %>% left_join(freq)
+
+invisible(.data)
 }
-fr_calc_monetary<-function(.data){
-  df_freq<-.data$data %>%
+
+#' @export
+fr_calc_metric_monetary<-function(.data){
+  recency<-.data$data %>%
     group_by(CustomerID) %>%
     summarise(
-  monetary= sum(total_dolar)/n_distinct(InvoiceNo))
+  monetary= 500/n_distinct(InvoiceNo))
+  .data$data<- .data$data %>% left_join(recency)
+  invisible(.data)
 }
 
 fr_calc_clusters<-function(.data){
 
 }
 
-fr_add_column<-function(.data){
 
-}
 #' @export
 fr_end_project<-function(.data){
   print(glue::glue("wrapped {.data$project}: returning the end dataframe"))

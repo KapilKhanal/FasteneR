@@ -1,4 +1,6 @@
 fr_generate_report<-function(.data){
-  rmarkdown::render("R/report.Rmd",
-                    params = list(df = .data$data))
+  cat(glue::glue("Report is rendering and is available at {getwd()}"))
+  rmarkdown::render("R/report.Rmd",output_dir=getwd(),
+                    params = list(df = .data$data,name = .data$project ))
+  invisible(.data)
 }

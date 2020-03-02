@@ -1,0 +1,15 @@
+Notes:
+Each function has _add_ and regular _get_ function
+  _add_ functions for adding to the buffet plate dataframe
+  _get_ to first add to the buffet plate
+New plate option to add tables in parallel?
+
+
+Funnel join functions and metrics
+The package has four main components:
+(i) data pipeline API optimized for the company
+(ii)Branded visualization themes, scales, and geoms for ggplot2
+(iii)R Markdown templates for different types of reports,
+(iv)Custom functions to optimize different parts of our workflow.
+
+

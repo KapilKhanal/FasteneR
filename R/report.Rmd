@@ -1,23 +1,33 @@
 ---
-title: "report"
+title: "Report on `r params$name` "
 author: "Kapil Khanal"
-date: "2/28/2020"
-output: html_document
+date: '`r format(Sys.Date(), "%Y-%B-%d")`'
+output: 
+  html_document:
+    theme: 'sandstone'
 params:
     df: d
+    name: project_name
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## Hypothetical Company
+#### Report on `golden goose`
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+RFM (recency, frequency, monetary) analysis is a behavior based technique used to segment customers by examining their transaction history such as
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+- how recently a customer has purchased (recency)
+- how often they purchase (frequency)
+- how much the customer spends (monetary)
+**It is based on the marketing axiom that 80% of your business comes from 20% of your customers**
 
-```{r cars}
-summary(params$df)
+
+```{r}
+knitr::kable(params$df)
+library(ggplot2)
+ggplot(data = collect(params$df),aes(x= CustomerID,y = recency,color = monetary)) + geom_point()
 ```
 
