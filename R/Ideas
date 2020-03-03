@@ -13,3 +13,12 @@ The package has four main components:
 (iv)Custom functions to optimize different parts of our workflow.
 
 
+Using With clauses to manage tables for complex queries. May be a queries.R where people can use type query and then the function will register query to a centralized query database , generate r functions and export it automatically to the package with documentation and examples.
+
+So every queries needs to connect to tbl and give back dataframe.
+With the piping concept, one could keep left joining stuff to have the dataframe ready.But these function should be talking clearly about primary key and other schema related stuff and also the functions should be testing stuff before commiting to database.
+All these assumes that the data analyst are creating functions that follow certain naming standards and publish it with the package.
+So the functions in the package should be committing to the main repo of the package and building it and giving new package every time but to do this it needs CD/CI tests that checks before exporting the functions as exported function of the package.
+
+Parameterized queries (also known as prepared statements) are a technique of query execution which separates a query string from query parameters values. There are two main reasons for using this technique:
+
