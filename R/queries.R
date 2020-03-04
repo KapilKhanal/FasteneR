@@ -5,14 +5,6 @@ sql_fasteners<- function(sql_string = sql_string , parameters = list()){
 structure(list(parameters = parameters,
                sql_string = sql_string), class = "sql_fasteners")
 }
-q = "SELECT * FROM {table} WHERE {filter_by} == {filter_value}"
-
-
-#sql fasteners object
-query_example<-sql_fasteners(sql_string = q,parameters = list(column = 'CustomerID',
-                                                              table = 'customers',
-                                                              filter_by ='Country',
-                                                              filter_value = "\'US\'"))
 
 give_query<-function(sql_fasteners_obj){
   parameters<-sql_fasteners_obj$parameters
@@ -38,6 +30,15 @@ generate_fr_func<-function(query){
  }
 }
 #
+q = "SELECT {column} FROM {table} WHERE {filter_by} == {filter_value}"
+
+
+#sql fasteners object
+query_example<-sql_fasteners(sql_string = q,parameters = list(column = 'CustomerID',
+                                                              table = 'customers',
+                                                              filter_by ='Country',
+                                                              filter_value = "\'US\'"))
+
 fr_get_customers_from<-generate_fr_func(query = query_example)
 
 k %>% fr_get_customers_from() %>%
@@ -45,13 +46,6 @@ k %>% fr_get_customers_from() %>%
   fr_add_product("Milk") %>%
   fr_get_resulting_dataframe()
 
-power <- function(exponent) {
-  function(x) {
-    x ^ exponent
-  }
-}
 
-square <- power(2)
-square(2)
-#> [1] 4
-square(4)
+
+

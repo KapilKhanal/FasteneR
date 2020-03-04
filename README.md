@@ -40,7 +40,29 @@ project_sales_us %>%
             fr_plot() %>%
             fr_generate_pdf_report() %>%
             fr_end_project()
+            
 ```
+### What about the complex SQL queries that depend on specific use cases?
+Those cases can also be represented as fastener-functions.
+```
+query = "SELECT {column} FROM {table} WHERE {filter_by} == {filter_value}"
+
+
+#sql fasteners object Separates SQL command with parameters
+query_example<-sql_fasteners(sql_string = query,parameters = list(column = 'CustomerID',
+                                                              table = 'customers',
+                                                              filter_by ='Country',
+                                                              filter_value = "\'US\'"))
+
+fr_get_customers_from<-generate_fr_func(query = query_example)
+
+k %>% fr_get_customers_from() %>%
+  fr_get_transaction_after("2012-01-02") %>%
+  fr_add_product("Milk") %>%
+  fr_get_resulting_dataframe()
+```
+The analyst will have to make a pull request on the package to include the function they made along with SQL explanation and vignettes.Specialized SQL_fastener class to separate SQL command and Data parameter is used.
+
 **At any moment in piping , one can use `project_sales_us$data` to get the dataframe nice and formatted, ready to use ggplot2 and rmarkdown for report. All the goodies in Rstudio** like 
   -vignettes, 
   -help documentation,
