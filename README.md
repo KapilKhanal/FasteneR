@@ -1,16 +1,26 @@
 # FasteneR
 
-Suppose you have a hypothetical company with customers from different regions. You have in-house data uses that usually follow a buffet style data pulling from the database and calculations we need. 
+Suppose you have a hypothetical company with customers from different regions. You have in-house data uses that usually follow a buffet style data pulling from the database and calculating the KPI's 
 
-```get_data >>(__and__then) add_purchase >> calc_interest >> calc_recency >> plot >>report``` 
+``` get_data >>
+      add_purchase >>
+      calc_interest >> 
+      calc_recency >>
+      plot >>
+      report >>
+      share
+``` 
 
 ## Why have internal package? 
 The package will be developed for four main components:<br>
-(i) data pipeline API optimized for the company<br>
+(i)Data pipeline API optimized for the company<br>
 (ii)Company brand visualization themes for ggplot2<br>
 (iii)R Markdown templates for different types of reports for each department,<br>
-(iv) Vignettes and documentation for all SQL queries and one centralized repo of queries<br>
+(iv)Vignettes and documentation for all SQL queries and one centralized repo of queries <br>
 (v)Custom functions to optimize different parts of our workflow.<br>
+(vi)Vignettes and help page for SQL Queries
+(vii)Version control for SQL Queries
+(viii)Easy to get rolling for non-technical users
 
 
 **What is Buffet style data workflow?**
