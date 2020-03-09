@@ -34,17 +34,19 @@ q = "SELECT {column} FROM {table} WHERE {filter_by} == {filter_value}"
 
 
 #sql fasteners object
-query_example<-sql_fasteners(sql_string = q,parameters = list(column = 'CustomerID',
+query_example<-sql_fasteners(sql_string = q,parameters = list(column = "*",
                                                               table = 'customers',
                                                               filter_by ='Country',
                                                               filter_value = "\'US\'"))
 
 fr_get_customers_from<-generate_fr_func(query = query_example)
+fr_plot_cID<-ggplot(data = data %>% dplyr::filter(!is.na(StockCode))) +
+  geom_point(aes(CustomerID,InvoiceNo,color = StockCode),size = 7,)
+
 
 k %>% fr_get_customers_from() %>%
-  fr_get_transaction_after("2012-01-02") %>%
-  fr_add_product("Milk") %>%
-  fr_get_resulting_dataframe()
+  fr_get_transaction_after("2014-02-11") %>%
+  fr_get_resulting_dataframe() -> data
 
 
 

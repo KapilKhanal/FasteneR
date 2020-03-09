@@ -16,7 +16,7 @@ library(crayon)
 #' @import RSQLite
 #' @return A vector contain all valid tokens in the original input string
 #' @export
-fastener<- function(db_name = db_name,project_name = project_name){
+fastener<- function(db_name = db_name,project_name = project_name,plot_list){
 print(green((paste(glue::glue("=========================PROJECT {project_name}=======================")))))
   conn <- DBI::dbConnect(RSQLite::SQLite(), db_name)
   green(cat(paste0("connecting to database:",blue(db_name),"\n \n")))
@@ -25,7 +25,8 @@ print(green((paste(glue::glue("=========================PROJECT {project_name}==
   print(green("================================================"))
   return (structure(list(data = tibble(),project = project_name,conn = conn,
                          db_name = db_name,events = list("process_started"),
-                         query = NULL), class = "fastener"))
+                         query = NULL,
+                         plots= plot_list), class = "fastener"))
 
   }
 fr_get_column_info<-function(.data,table_name){
@@ -78,9 +79,6 @@ fr_get_product<-function(.data,description){
   invisible(.data)
 }
 
-fr_build_query<-function(query){
-  new_query<-query
-}
 
 #' A Function to clean a single input string by removing punctuation and numbers and tokenizing it.
 #'
@@ -107,8 +105,8 @@ fr_get_transaction_after<- function(.data,date){
 #' @export
 
 fr_get_resulting_dataframe<-function(.data){
-  print("DISCONNECTING from database")
-  print("Returning the resulting dataframe")
+  green(cat("DISCONNECTING from database"))
+  green(cat("Returning the resulting dataframe"))
   return (collect(.data$data))
 }
 #' @export

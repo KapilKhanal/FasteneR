@@ -1,9 +1,14 @@
 Notes:
+Each object signatures should tell the whole story.
+
 Each function has _add_ and regular _get_ function
   _add_ functions for adding to the buffet plate dataframe
   _get_ to first add to the buffet plate
 New plate option to add tables in parallel?
 
+Companies have pre-defined plots they want on every report
+but we need flexibility to make new plots and use it on the pipe
+just like queries.
 
 Funnel join functions and metrics
 The package has four main components:
@@ -20,5 +25,15 @@ With the piping concept, one could keep left joining stuff to have the dataframe
 All these assumes that the data analyst are creating functions that follow certain naming standards and publish it with the package.
 So the functions in the package should be committing to the main repo of the package and building it and giving new package every time but to do this it needs CD/CI tests that checks before exporting the functions as exported function of the package.
 
-Parameterized queries (also known as prepared statements) are a technique of query execution which separates a query string from query parameters values. There are two main reasons for using this technique:
+Parameterized queries (also known as prepared statements) are a technique of query execution which separates a query string from query parameters values.
 
+Also adding analysis results to database as a table will help for subsequent analysis
+For example, what happened to our last golden goose?
+Also event analysis for the models as well. Fitting a simple regression model and having the confidence stored and see how the models changed will also help.
+
+So the package should have a way to know the modelling is done and want to store the results with metadata and project details.
+
+Add a data manifesto checklist for inconsistencies
+Add a feature store table for each customer
+Add a rshiny app to filter and see git and queries. for example, filtering out queries that uses similar parameters and most of it
+Add a performance summary for each query
