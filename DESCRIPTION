@@ -11,6 +11,5 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     dplyr,
-    RSQLite,
-    dbplyr
+    RSQLite
 RoxygenNote: 6.1.1

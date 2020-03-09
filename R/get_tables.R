@@ -1,8 +1,6 @@
 library(RSQLite)
 library(magrittr)
 library(DBI)
-library(dbplyr)
-library(dplyr)
 library(ggplot2)
 library(modeldb)
 library(tidypredict)
@@ -14,6 +12,7 @@ library(crayon)
 #' @param str name of database and the name of the particular project"
 #' @import DBI
 #' @import RSQLite
+#' @import dplyr
 #' @return A vector contain all valid tokens in the original input string
 #' @export
 fastener<- function(db_name = db_name,project_name = project_name,plot_list){

@@ -1,11 +1,12 @@
 #takes in an S3 class that builds sql query parameter and sql command.
 #Analysts will be able to construct s3 objects as required and make fastener functions
 # as required and make it available to the entire team
+#'@export
 sql_fasteners<- function(sql_string = sql_string , parameters = list()){
 structure(list(parameters = parameters,
                sql_string = sql_string), class = "sql_fasteners")
 }
-
+#'@export
 give_query<-function(sql_fasteners_obj){
   parameters<-sql_fasteners_obj$parameters
   query<-glue::glue("{sql_fasteners_obj$sql_string}")
@@ -30,23 +31,20 @@ generate_fr_func<-function(query){
  }
 }
 #
-q = "SELECT {column} FROM {table} WHERE {filter_by} == {filter_value}"
+#q = "SELECT {column} FROM {table} WHERE {filter_by} == {filter_value}"
 
 
 #sql fasteners object
-query_example<-sql_fasteners(sql_string = q,parameters = list(column = "*",
-                                                              table = 'customers',
-                                                              filter_by ='Country',
-                                                              filter_value = "\'US\'"))
+#query_example<-sql_fasteners(sql_string = q,parameters = list(column = "*",
+                                                            #  table = 'customers',
+                                                             # filter_by ='Country',
+                                                              #filter_value = "\'US\'"))
 
-fr_get_customers_from<-generate_fr_func(query = query_example)
-fr_plot_cID<-ggplot(data = data %>% dplyr::filter(!is.na(StockCode))) +
-  geom_point(aes(CustomerID,InvoiceNo,color = StockCode),size = 7,)
+#fr_get_customers_from<-generate_fr_func(query = query_example)
+#fr_plot_cID<-ggplot(data = data %>% dplyr::filter(!is.na(StockCode))) +
+#geom_point(aes(CustomerID,InvoiceNo,color = StockCode),size = 7,)
 
 
-k %>% fr_get_customers_from() %>%
-  fr_get_transaction_after("2014-02-11") %>%
-  fr_get_resulting_dataframe() -> data
 
 
 

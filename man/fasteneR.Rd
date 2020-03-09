@@ -4,7 +4,7 @@
 \alias{fastener}
 \title{A function to create the object of Type:FasteneR}
 \usage{
-fastener(db_name = db_name, project_name = project_name)
+fastener(db_name = db_name, project_name = project_name, plot_list)
 }
 \arguments{
 \item{str}{name of database and the name of the particular project"}
